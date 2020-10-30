@@ -1,0 +1,105 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #990c58;
+}
+
+body {
+  margin: 2rem;
+  background: #ee9ca7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffdde1,
+    #ee9ca7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffdde1,
+    #ee9ca7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+a {
+  text-decoration: none;
+  font-weight: 300;
+  font-size: 1rem;
+  padding: 2rem;
+  font-size: 1.5rem;
+  color: #990c58;
+}
+#app {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  user-select: none;
+  .welcome {
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 3rem;
+  }
+}
+.score {
+  margin: 4rem;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.grid {
+  justify-content: center;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(5, 5rem);
+  grid-template-rows: repeat(5, 5rem);
+  .square {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-weight: 900;
+    cursor: pointer;
+    .number {
+      font-size: 3.5rem;
+    }
+    visibility: hidden;
+  }
+  .selected {
+    border: 2.5rem solid;
+    box-sizing: border-box;
+    .number {
+      margin: -2.4rem;
+    }
+  }
+  .landing {
+    visibility: visible;
+    animation: land 0.1s;
+  }
+}
+@keyframes land {
+  from {
+    margin-top: -10px;
+  }
+  to {
+    margin-top: 0;
+  }
+}
+/* god help meeeeah */
+$background-colors-list: /* 1 */ #b9f24b /* 2 */ #56befb /* 3 */ #fec85b /* 4 */
+  #ff7256 /* 5 */ #009e87 /* 6 */ #7763fa /* 7 */ #f557c5 /* 8 */ #e52d45
+  /* 9 */ #fff732 /* 10 */ #fff733 /* 11 */ #fb4c73 /* 11 */ #fb4c73;
+$colors-list: /* 1 */ #33b00e /* 2 */ #098cff /* 3 */ #f77317 /* 4 */ #f5d29a
+  /* 5 */ #7de99d /* 6 */ #cabaff /* 7 */ #febda7 /* 8 */ #f8d1af /* 9 */
+  #d55a3b /* 10 */ #d05332 /* 11 */ #fcf7fe;
+@each $current-color in $colors-list {
+  $i: index($colors-list, $current-color);
+  .number-#{$i} {
+    background-color: nth($background-colors-list, $i);
+    color: $current-color;
+    border-color: $current-color;
+  }
+  .number-#{$i}.selected {
+    border-color: rgba($current-color, 0)
+      rgba($current-color, 0.1)
+      rgba($current-color, 0.3)
+      rgba($current-color, 0.4);
+  }
+}
